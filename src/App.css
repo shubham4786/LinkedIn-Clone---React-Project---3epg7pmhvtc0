@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*******************SignUp***************************/
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  background: white;
+  padding: 13px;
+  border-radius: 10px;
+}
+
+.signUpForm input,
+.signUpForm button {
+  margin: 15px 20px 5px 20px;
+  padding: 12px;
+}
+
+.signUpForm button{
+  border-radius: 35px;
+  padding: 10px 0;
+  text-transform: none;
+}
+
+.headerLogo {
+  height: 35px;
+  padding-top: 1.5rem;
+  display: flex;
+}
+
+.signUpHeading {
+  font-size: 20px;
+  font-weight: 500;
+}
+.footer {
+  padding: 5px 15px;
+  text-decoration: none;
+  color: #444242;
+  font-weight: 500;
+}
+
+#name_error,
+#email_error,
+#pass_error {
+  margin: 0 20px 15px 20px;
+  color: #c62828;
+  display: none;
+  font-weight: 500;
+}
+
+/************************Login****************************/
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  background: white;
+  padding: 1.2rem;
+  border-radius: 10px;
+}
+
+.signInForm input,
+.signInForm button {
+  margin: 15px 20px 5px 20px;
+  padding: 15px;
+}
+
+.signInForm button{
+  border-radius: 35px;
+  padding: 10px 0;
+  text-transform: none;
+}
+
+.signInHeading {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+/*********************Main Post Components**********************/
+.commentsDisable {
+  display: none;
+}
+
+.commentsEnable {
+  display: block;
+}
+
+
+/*********************Media queries*****************************/
+
+@media (max-width: 500px){
+  .signInForm, .signUpForm{
+    width: 90%;
+  }
+
+  .navButton{
+    display: none !important;
+  }
+}
+
+@media (max-width: 800px){
+.postModel{
+  width: 80% !important;
+}
+}
