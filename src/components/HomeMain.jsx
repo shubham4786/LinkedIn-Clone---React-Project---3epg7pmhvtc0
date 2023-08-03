@@ -40,6 +40,7 @@ function HomeMain({ prevPosts, setPrevPosts }) {
             return (
               <Item key={index}>
                 <MainPost
+                  index={index}
                   post={post}
                   prevPosts={prevPosts}
                   setPrevPosts={setPrevPosts}

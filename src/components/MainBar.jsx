@@ -161,7 +161,7 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
           paddingTop: "5px",
         }}
       >
-        <Button sx={{ textTransform: "none" }}>
+        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
           <PhotoSizeSelectActualOutlinedIcon
             sx={{ color: "#378fe9", paddingRight: "5px" }}
           />
@@ -169,19 +169,19 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
             Photo
           </span>
         </Button>
-        <Button sx={{ textTransform: "none" }}>
+        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
           <SmartDisplayIcon sx={{ color: "#5f9b41", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
             Video
           </span>
         </Button>
-        <Button sx={{ textTransform: "none" }}>
+        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
           <TodayIcon sx={{ color: "#c37d16", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
             Event
           </span>
         </Button>
-        <Button sx={{ textTransform: "none" }}>
+        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
           <FeedOutlinedIcon sx={{ color: "#e16745", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
             Write Artical

@@ -8,7 +8,7 @@ import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { useLocation } from "react-router-dom";
 
-const MainPost = ({ post, prevPosts, setPrevPosts }) => {
+const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
   const [likes, setLikes] = useState(false);
   const [likeColor, setLikeColor] = useState("black");
   const [likesCount, setLikesCount] = useState(post.likes);
@@ -92,6 +92,7 @@ const MainPost = ({ post, prevPosts, setPrevPosts }) => {
     lineHeight: 1,
     fontSize: "0.8rem",
     padding: "10px",
+    flexWrap: "wrap",
   });
 
   return (
@@ -110,6 +111,7 @@ const MainPost = ({ post, prevPosts, setPrevPosts }) => {
           </span>
         </div>
       </div>
+
       <div
         style={{
           textAlign: "justify",
