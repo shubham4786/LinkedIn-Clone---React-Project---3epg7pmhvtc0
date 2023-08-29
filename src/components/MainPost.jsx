@@ -141,12 +141,12 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
             Comment
           </Button>
 
-          <Button sx={buttonStyle}>
+          <Button sx={buttonStyle} style={{ pointerEvents: "none" }}>
             <RepeatOutlinedIcon sx={{ paddingRight: "5px" }} />
             Repost
           </Button>
 
-          <Button sx={buttonStyle}>
+          <Button sx={buttonStyle} style={{ pointerEvents: "none" }}>
             <SendOutlinedIcon sx={{ paddingRight: "5px" }} />
             Send
           </Button>

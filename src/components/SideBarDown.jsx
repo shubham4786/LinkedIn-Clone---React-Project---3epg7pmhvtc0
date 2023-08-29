@@ -1,7 +1,7 @@
 import React from "react";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";
-import ListItemButton from "@mui/material/ListItemButton";
+import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import NumbersIcon from "@mui/icons-material/Numbers";
@@ -27,30 +27,30 @@ const SideBarDown = () => {
           </ListSubheader>
         }
       >
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <NumbersIcon sx={{ width: "16px" }} />
           </ListItemIcon>
           <ListItemText primary="education" />
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <NumbersIcon sx={{ width: "16px" }} />
           </ListItemIcon>
           <ListItemText primary="money" />
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <NumbersIcon sx={{ width: "16px" }} />
           </ListItemIcon>
           <ListItemText primary="personaldevelopment" />
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <NumbersIcon sx={{ width: "16px" }} />
           </ListItemIcon>
           <ListItemText primary="jobinterviews" />
-        </ListItemButton>
+        </ListItem>
       </List>
     </>
   );

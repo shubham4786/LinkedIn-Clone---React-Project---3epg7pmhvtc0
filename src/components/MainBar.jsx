@@ -57,6 +57,12 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
     handleClose();
   };
 
+  const btnStyle = {
+    textTransform: "none",
+    flexWrap: "wrap",
+    pointerEvents: "none",
+  };
+
   return (
     <>
       <div style={{ display: "flex" }}>
@@ -161,7 +167,7 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
           paddingTop: "5px",
         }}
       >
-        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
+        <Button sx={btnStyle}>
           <PhotoSizeSelectActualOutlinedIcon
             sx={{ color: "#378fe9", paddingRight: "5px" }}
           />
@@ -169,19 +175,19 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
             Photo
           </span>
         </Button>
-        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
+        <Button sx={btnStyle}>
           <SmartDisplayIcon sx={{ color: "#5f9b41", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
             Video
           </span>
         </Button>
-        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
+        <Button sx={btnStyle}>
           <TodayIcon sx={{ color: "#c37d16", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
             Event
           </span>
         </Button>
-        <Button sx={{ textTransform: "none", flexWrap: "wrap" }}>
+        <Button sx={btnStyle}>
           <FeedOutlinedIcon sx={{ color: "#e16745", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
             Write Artical

@@ -91,7 +91,13 @@ function Login() {
 
   return (
     <>
-      <div style={{ background: "#f3ecec", paddingBottom: "2rem" }}>
+      <div
+        style={{
+          background: "#f3ecec",
+          paddingBottom: "4rem",
+          paddingTop: "1rem",
+        }}
+      >
         <Container>
           <div className="headerLogo">
             <span
@@ -114,42 +120,47 @@ function Login() {
               <span style={{ padding: "5px 10px", textAlign: "center" }}>
                 Stay updated on your professional world
               </span>
+              <form
+                onSubmit={handleLogin}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleLoginDetails}
+                  value={email}
+                  ref={emailRef}
+                  className="textField"
+                />
+                <div id="email_error" ref={emailErrorRef}>
+                  The email address you entered isn't registered or incorrrect
+                </div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  onChange={handleLoginDetails}
+                  ref={passwordRef}
+                  value={password}
+                  className="textField"
+                />
+                <div id="pass_error" ref={passwordErrorRef}>
+                  Enter valid password
+                </div>
 
-              <input
-                type="email"
-                placeholder="Email"
-                id="email"
-                onChange={handleLoginDetails}
-                ref={emailRef}
-                value={email}
-                className="textField"
-              />
-              <div id="email_error" ref={emailErrorRef}>
-                Please enter an email address
-              </div>
-
-              <input
-                type="password"
-                placeholder="Password"
-                id="password"
-                onChange={handleLoginDetails}
-                ref={passwordRef}
-                value={password}
-                className="textField"
-              />
-              <div id="pass_error" ref={passwordErrorRef}>
-                Enter valid password
-              </div>
-
-              <Button
+                {/* <Button
                 style={{ padding: "5px", margin: "5px", width: "50%" }}
                 variant="text"
               >
-                {/* Forgot password? */}
-              </Button>
-              <Button onClick={handleLogin} variant="contained">
-                Sign In
-              </Button>
+                Forgot password?
+              </Button> */}
+                <Button type="submit" variant="contained">
+                  Sign In
+                </Button>
+              </form>
+
               <Button variant="outlined" onClick={onLoginClick}>
                 <img
                   style={{ width: "25px", margin: "0 10px" }}

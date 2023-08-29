@@ -1,7 +1,7 @@
 import React from "react";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";
-import ListItemButton from "@mui/material/ListItemButton";
+import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import NumbersIcon from "@mui/icons-material/Numbers";
@@ -32,46 +32,46 @@ const AsideBar = () => {
           </ListSubheader>
         }
       >
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <FiberManualRecordIcon sx={{ fontSize: "12px" }} />
           </ListItemIcon>
           <ListItemText>
             <span style={newsStyle}>Driving social impact at scale</span>
           </ListItemText>
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <FiberManualRecordIcon sx={{ fontSize: "12px" }} />
           </ListItemIcon>
           <ListItemText>
             <span style={newsStyle}>MNCs on tech hiring spree</span>
           </ListItemText>
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <FiberManualRecordIcon sx={{ fontSize: "12px" }} />
           </ListItemIcon>
           <ListItemText>
             <span style={newsStyle}>Real estate crunch hits retail</span>
           </ListItemText>
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <FiberManualRecordIcon sx={{ fontSize: "12px" }} />
           </ListItemIcon>
           <ListItemText>
             <span style={newsStyle}>Succeeding as a social entrepreneur</span>
           </ListItemText>
-        </ListItemButton>
-        <ListItemButton sx={{ padding: "2px 10px" }}>
+        </ListItem>
+        <ListItem sx={{ padding: "2px 10px" }}>
           <ListItemIcon sx={{ minWidth: "20px" }}>
             <FiberManualRecordIcon sx={{ fontSize: "12px" }} />
           </ListItemIcon>
           <ListItemText>
             <span style={newsStyle}>Benefits of early career volunteering</span>
           </ListItemText>
-        </ListItemButton>
+        </ListItem>
       </List>
     </>
   );

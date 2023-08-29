@@ -121,43 +121,49 @@ const SignUp = () => {
             </span>
             <div className="signUpForm">
               <div className="signUpHeading">Sign Up</div>
+              <form
+                onSubmit={handleSignUp}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                <input
+                  type="text"
+                  placeholder="Name"
+                  id="name"
+                  onChange={handleSignupDetails}
+                  value={name}
+                />
+                <div id="name_error" ref={nameErrorRef}>
+                  Enter your valid name
+                </div>
 
-              <input
-                type="text"
-                placeholder="Name"
-                id="name"
-                onChange={handleSignupDetails}
-                value={name}
-              />
-              <div id="name_error" ref={nameErrorRef}>
-                Enter your valid name
-              </div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleSignupDetails}
+                />
+                <div id="email_error" ref={emailErrorRef}>
+                  Enter valid email address
+                </div>
 
-              <input
-                type="email"
-                placeholder="Email"
-                id="email"
-                onChange={handleSignupDetails}
-                value={email}
-              />
-              <div id="email_error" ref={emailErrorRef}>
-                Enter valid email address
-              </div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  onChange={handleSignupDetails}
+                  value={password}
+                />
+                <div id="pass_error" ref={passwordErrorRef}>
+                  Password must contain atleast 6 characters
+                </div>
 
-              <input
-                type="password"
-                placeholder="Password"
-                id="password"
-                onChange={handleSignupDetails}
-                value={password}
-              />
-              <div id="pass_error" ref={passwordErrorRef}>
-                Password must contain atleast 6 characters
-              </div>
+                <Button type="submit" variant="contained">
+                  Sign Up
+                </Button>
+              </form>
 
-              <Button onClick={handleSignUp} variant="contained">
-                Sign Up
-              </Button>
               <Button variant="outlined" onClick={onLoginClick}>
                 <img
                   style={{ width: "25px", margin: "0 10px" }}
