@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,7 +6,8 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import SmsOutlinedIcon from "@mui/icons-material/SmsOutlined";
 import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { getItem } from "../userFunction";
 
 const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
   const [likes, setLikes] = useState(false);
@@ -15,8 +16,10 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
   const [commentClass, setCommentClass] = useState("commentsDisable");
   const [newComment, setNewComment] = useState("");
 
-  const localDetails = useLocation();
+  // const localDetails = useLocation();
   // console.log("Main Bar", localDetails.state);
+
+  const userRef = useRef(getItem("user"));
 
   const handleLikeBtn = (like_id) => {
     setLikes(!likes);
@@ -72,7 +75,7 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
               comments: [
                 ...posts.comments,
                 {
-                  by: localDetails?.state?.userName,
+                  by: userRef?.current?.name,
                   comment: newComment,
                 },
               ].reverse(),
@@ -161,8 +164,8 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
           }}
         >
           <Avatar
-            alt={localDetails?.state?.userName}
-            src={localDetails?.state?.userPhoto}
+            alt={userRef?.current?.name}
+            src={userRef?.current?.userPhoto || userRef?.current?.name}
             sx={{ width: 35, height: 35, margin: "4px" }}
           />
           <input
@@ -193,9 +196,10 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
           </Button>
         </div>
 
-        {post.comments.map((com) => {
+        {post.comments.map((com, index) => {
           return (
             <div
+              key={index}
               style={{
                 margin: "15px",
                 // display: "flex",

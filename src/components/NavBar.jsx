@@ -8,7 +8,7 @@ import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import NavIcon from "../assets/icon.png";
 import Icon from "@mdi/react";
-import LogoutIcon from "@mui/icons-material/Logout";
+// import LogoutIcon from "@mui/icons-material/Logout";
 import {
   mdiHomeAccount,
   mdiAccountMultiple,
@@ -17,16 +17,19 @@ import {
   mdiBell,
 } from "@mdi/js";
 import Avatar from "@mui/material/Avatar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { getItem } from "../userFunction";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 function NavBar() {
-  const localDetails = useLocation();
+  // const localDetails = useLocation();
   // console.log("Nav bar", localDetails.state);
 
   const userRef = useRef(getItem("user"));
+  // console.log("nav", userRef);
 
   const navigate = useNavigate();
 
@@ -98,9 +101,18 @@ function NavBar() {
     fontSize: "0.8rem",
   });
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
-      <AppBar component="nav" sx={{ background: "#fff" }}>
+      <AppBar className="NavBar" component="nav" sx={{ background: "#fff" }}>
         <Container maxWidth="lg">
           <Toolbar
             sx={{
@@ -179,27 +191,36 @@ function NavBar() {
 
               <Button
                 sx={buttonStyle}
-                onClick={() => {
-                  navigate("/working");
-                }}
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
               >
                 <Avatar
-                  alt={localDetails?.state?.userName}
-                  src={localDetails?.state?.userPhoto}
+                  alt={userRef?.current?.name}
+                  src={userRef?.current?.userPhoto || userRef?.current?.name}
                   sx={{
-                    width: 20,
-                    height: 20,
+                    width: 30,
+                    height: 30,
                     marginBottom: "2px",
                     backgroundColor: "black",
                   }}
                 />
                 Me
               </Button>
-
-              <Button sx={buttonStyle} onClick={logOutBtn}>
-                <LogoutIcon />
-                Log Out
-              </Button>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
+              >
+                <MenuItem>{userRef?.current?.name}</MenuItem>
+                <MenuItem onClick={logOutBtn}>Logout</MenuItem>
+              </Menu>
             </Box>
           </Toolbar>
         </Container>

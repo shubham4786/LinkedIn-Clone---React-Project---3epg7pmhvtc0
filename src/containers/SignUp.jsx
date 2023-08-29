@@ -29,15 +29,21 @@ const SignUp = () => {
   const onLoginClick = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // console.log("result", result);
+        console.log("result", result);
         const userName = result.user.displayName;
+        const userEmail = result.user.email;
         const userPhoto = result.user.photoURL;
-        navigate("/home", {
-          state: {
-            userName,
-            userPhoto,
-          },
-        });
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: userName,
+            email: userEmail,
+            password: "123456",
+            islogged: true,
+            userPhoto: userPhoto,
+          })
+        );
+        navigate("/home");
       })
       .catch((error) => {
         console.error("Error", error);
@@ -65,21 +71,18 @@ const SignUp = () => {
       email.match(emailPattern) &&
       password.match(passwordPattern)
     ) {
+      const newname = name.charAt(0).toUpperCase() + name.slice(1);
       localStorage.setItem(
         "user",
         JSON.stringify({
-          name: name,
+          name: newname,
           email: email,
           password: password,
           islogged: true,
         })
       );
 
-      navigate("/home", {
-        state: {
-          userName: name,
-        },
-      });
+      navigate("/home");
     }
   };
 

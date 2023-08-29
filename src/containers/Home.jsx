@@ -21,7 +21,7 @@ function Home() {
   // }, [prevPosts]);
 
   return (
-    <Container maxWidth="lg" sx={{ paddingTop: 11 }}>
+    <Container className="homeContainer" maxWidth="lg" sx={{ paddingTop: 11 }}>
       <HomeMain prevPosts={prevPosts} setPrevPosts={setPrevPosts} />
     </Container>
   );

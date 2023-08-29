@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import profilrbg from "../assets/sidebar/bg.svg";
 import Avatar from "@mui/material/Avatar";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { getItem } from "../userFunction";
 
 const SideBar = () => {
-  const localDetails = useLocation();
+  // const localDetails = useLocation();
   // console.log("Side bar", localDetails.state);
+  const userRef = useRef(getItem("user"));
   return (
     <>
       <img
@@ -22,8 +24,8 @@ const SideBar = () => {
         }}
       >
         <Avatar
-          alt={localDetails?.state?.userName}
-          src={localDetails?.state?.userPhoto}
+          alt={userRef?.current?.name}
+          src={userRef?.current?.userPhoto || userRef?.current?.name}
           sx={{ width: 70, height: 70 }}
         />
       </div>
@@ -35,7 +37,7 @@ const SideBar = () => {
             textTransform: "capitalize",
           }}
         >
-          {localDetails?.state?.userName}
+          {userRef?.current?.name}
         </div>
         <div>DSA | HTML | CSS | Javascript | Java</div>
       </div>

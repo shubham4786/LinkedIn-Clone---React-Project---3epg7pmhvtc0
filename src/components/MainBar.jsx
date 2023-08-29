@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
@@ -7,7 +7,8 @@ import TodayIcon from "@mui/icons-material/Today";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { getItem } from "../userFunction";
 
 const style = {
   position: "absolute",
@@ -29,8 +30,10 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
 
   const [postContent, setPostContent] = useState("");
 
-  const localDetails = useLocation();
+  // const localDetails = useLocation();
   // console.log("Main Bar", localDetails.state);
+
+  const userRef = useRef(getItem("user"));
 
   const handlePost = () => {
     if (postContent !== "") {
@@ -39,7 +42,7 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
           ...prevPosts,
           {
             id: prevPosts.length + 1,
-            postedBy: localDetails?.state?.userName,
+            postedBy: userRef?.current?.name,
             postText: postContent,
             likes: 0,
             comments: [
@@ -67,8 +70,8 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
     <>
       <div style={{ display: "flex" }}>
         <Avatar
-          alt={localDetails?.state?.userName}
-          src={localDetails?.state?.userPhoto}
+          alt={userRef?.current?.name}
+          src={userRef?.current?.userPhoto || userRef?.current?.name}
           sx={{ width: 50, height: 50, margin: "2px" }}
         />
         <Button
@@ -98,8 +101,8 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
           <Box sx={style} className="postModel">
             <Box sx={{ display: "flex" }}>
               <Avatar
-                alt={localDetails?.state?.userName}
-                src={localDetails?.state?.userPhoto}
+                alt={userRef?.current?.name}
+                src={userRef?.current?.userPhoto || userRef?.current?.name}
                 sx={{ width: 50, height: 50, margin: "5px" }}
               />
               <span
@@ -111,7 +114,7 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
                   textTransform: "capitalize",
                 }}
               >
-                {localDetails?.state?.userName}
+                {userRef?.current?.name}
               </span>
             </Box>
             <Box
@@ -190,7 +193,7 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
         <Button sx={btnStyle}>
           <FeedOutlinedIcon sx={{ color: "#e16745", paddingRight: "5px" }} />
           <span style={{ color: "rgba(0,0,0,0.4)", fontWeight: 600 }}>
-            Write Artical
+            Write Article
           </span>
         </Button>
       </div>
