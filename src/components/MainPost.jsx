@@ -8,11 +8,12 @@ import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 // import { useLocation } from "react-router-dom";
 import { getItem } from "../userFunction";
+import CloseIcon from "@mui/icons-material/Close";
 
 const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
   const [likes, setLikes] = useState(false);
   const [likeColor, setLikeColor] = useState("black");
-  const [likesCount, setLikesCount] = useState(post.likes);
+  // const [likesCount, setLikesCount] = useState(post.likes);
   const [commentClass, setCommentClass] = useState("commentsDisable");
   const [newComment, setNewComment] = useState("");
 
@@ -23,38 +24,40 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
 
   const handleLikeBtn = (like_id) => {
     setLikes(!likes);
-    if (!likes) {
-      setLikesCount((count) => count + 1);
-    } else {
-      setLikesCount((count) => count - 1);
-    }
+    // if (!likes) {
+    //   setLikesCount((count) => count + 1);
+    // } else {
+    //   setLikesCount((count) => count - 1);
+    // }
 
-    // prevPosts.map((posts) => {
-    //   if (posts.id == like_id) {
-    //     if (!likes) {
-    //       setPrevPosts(
-    //         [
-    //           ...prevPosts,
-    //           {
-    //             ...posts,
-    //             likes: posts.likes + 1,
-    //           },
-    //         ].reverse()
-    //       );
-    //     } else {
-    //       setPrevPosts([
-    //         ...prevPosts,
-    //         {
-    //           ...posts,
-    //           likes: posts.likes + 1,
-    //         },
-    //       ]);
-    //     }
-    //   }
-    // });
+    // setPrevPosts()
+
+    let newdata = [];
+    prevPosts.map((posts) => {
+      if (posts.id == like_id) {
+        // console.log(posts);
+        // console.log(likesCount);
+        if (!likes) {
+          posts = {
+            ...posts,
+            likes: post.likes + 1,
+          };
+        } else {
+          posts = {
+            ...posts,
+            likes: post.likes - 1,
+          };
+        }
+      }
+
+      newdata = [...newdata, posts];
+    });
+    setPrevPosts(newdata);
+    // console.log(newdata);
   };
   useEffect(() => {
     setLikeColor(likes ? "#0a66c2" : "black");
+    // console.log(likesCount);
   }, [likes]);
 
   const handleCommentBtn = () => {
@@ -62,28 +65,23 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
   };
 
   const handleCommentPost = (comment_id) => {
-    console.log(comment_id);
-    console.log(newComment);
+    // console.log(comment_id);
+    // console.log(newComment);
 
     prevPosts.map((posts) => {
       if (posts.id == comment_id) {
-        setPrevPosts(
-          [
-            ...prevPosts,
-            {
-              ...posts,
-              comments: [
-                ...posts.comments,
-                {
-                  by: userRef?.current?.name,
-                  comment: newComment,
-                },
-              ].reverse(),
-            },
-          ].reverse()
-        );
+        // console.log(posts);
+        posts.comments = [
+          {
+            by: userRef?.current?.name,
+            comment: newComment,
+          },
+          ...posts.comments,
+        ];
       }
     });
+
+    setPrevPosts([...prevPosts]);
     setNewComment("");
     // window.location.reload();
   };
@@ -98,6 +96,12 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
     flexWrap: "wrap",
   });
 
+  const handleDelete = (deleteId) => {
+    // console.log(deleteId);
+    const data = prevPosts.filter((item) => item.id !== deleteId);
+    setPrevPosts(data);
+  };
+
   return (
     <div>
       <div
@@ -108,10 +112,22 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
           src={post.postedBy}
           sx={{ width: 45, height: 45, margin: "4px" }}
         />
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
           <span style={{ color: "rgba(0,0,0,0.7)", fontWeight: 600 }}>
             {post.postedBy}
           </span>
+          <button
+            style={{ border: "none", background: "none", cursor: "pointer" }}
+            onClick={() => handleDelete(post.id)}
+          >
+            <CloseIcon />
+          </button>
         </div>
       </div>
 
@@ -134,7 +150,7 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
         {/* {console.log(post)} */}
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <Button sx={buttonStyle} onClick={() => handleLikeBtn(post.id)}>
-            <span> {likesCount} </span>
+            <span> {post.likes} </span>
             <ThumbUpAltIcon sx={{ padding: "0 5px", color: likeColor }} />
             Like
           </Button>
@@ -230,7 +246,7 @@ const MainPost = ({ post, prevPosts, setPrevPosts, index }) => {
                   display: "flex",
                   textAlign: "justify",
                   alignItems: "center",
-                  padding: "5px 15px",
+                  padding: "0px 5px 5px 50px",
                   color: "black",
                 }}
               >

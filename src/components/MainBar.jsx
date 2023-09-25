@@ -35,29 +35,23 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
 
   const userRef = useRef(getItem("user"));
 
-  const handlePost = () => {
+  const handlePost = (event) => {
     if (postContent !== "") {
-      setPrevPosts(
-        [
-          ...prevPosts,
-          {
-            id: prevPosts.length + 1,
-            postedBy: userRef?.current?.name,
-            postText: postContent,
-            likes: 0,
-            comments: [
-              {
-                by: "",
-                comment: "",
-              },
-            ],
-          },
-        ].reverse()
-      );
+      setPrevPosts([
+        {
+          id: prevPosts.length + 1,
+          postedBy: userRef?.current?.name,
+          postText: postContent,
+          likes: 0,
+          comments: [],
+        },
+        ...prevPosts,
+      ]);
     }
     setPostContent("");
     // console.log(postContent);
     handleClose();
+    // window.location.reload();
   };
 
   const btnStyle = {

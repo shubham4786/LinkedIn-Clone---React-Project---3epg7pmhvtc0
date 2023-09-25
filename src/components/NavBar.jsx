@@ -146,7 +146,7 @@ function NavBar() {
                 <span>Home</span>
               </Button>
 
-              <Button
+              {/* <Button
                 sx={buttonStyle}
                 onClick={() => {
                   navigate("/working");
@@ -187,7 +187,7 @@ function NavBar() {
               >
                 <Icon path={mdiBell} size={1} />
                 Notifications
-              </Button>
+              </Button> */}
 
               <Button
                 sx={buttonStyle}
