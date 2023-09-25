@@ -51,7 +51,7 @@ const MainBar = ({ prevPosts, setPrevPosts }) => {
     setPostContent("");
     // console.log(postContent);
     handleClose();
-    // window.location.reload();
+    window.location.reload();
   };
 
   const btnStyle = {
